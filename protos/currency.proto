@@ -1,15 +1,29 @@
 syntax = "proto3";
 
 service Currency {
+  // Return the exchange rate fot the two provided currency codes
   rpc GetRate(RateRequest) returns (RateResponse);
 }
 
 message RateRequest{
-  string Base = 1;
-  string Destination = 2;
+  // Base currency for the rate
+  Currencies Base = 1;
+  // Destination currency for the rate
+  Currencies Destination = 2;
 }
 
-
+// Is the response from GetRate, it contains rate which is a floating and can be used to convert between the two currencies
 message RateResponse{
   float rate = 1;
+}
+
+// Custom type
+// GRPC supports enums. If the type does not attend the enum, it will not execute te request
+enum Currencies {
+  BRL = 0;
+  USD = 1;
+  EUR = 2;
+  NOK = 3;
+  CAD = 4;
+  RUB = 5;
 }
