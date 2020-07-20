@@ -22,9 +22,12 @@ func main() {
 	currency.RegisterCurrencyServer(gs, cs)
 
 	l, err := net.Listen("tcp", ":9098")
+
 	if err != nil {
 		log.Error(fmt.Sprintf("Unable to listen port %s", "9098"), "Error", err)
 		os.Exit(1)
 	}
+	log.Info("Listen on Port: :9098")
 	gs.Serve(l)
+
 }
