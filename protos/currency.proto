@@ -14,7 +14,7 @@ message RateRequest{
 
 // Is the response from GetRate, it contains rate which is a floating and can be used to convert between the two currencies
 message RateResponse{
-  float rate = 1;
+  double rate = 1;
 }
 
 // Custom type

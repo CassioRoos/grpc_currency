@@ -7,6 +7,7 @@ import (
 	"google.golang.org/grpc/reflection"
 	"grpc_currency/protos/currency"
 	"grpc_currency/server"
+	"grpc_currency/services"
 	"net"
 	"os"
 )
@@ -14,7 +15,12 @@ import (
 func main() {
 	log := hclog.Default()
 	gs := grpc.NewServer()
-	cs := server.NewCurrency(log)
+	rates, err := services.NewRates(log)
+	if err!=nil{
+		log.Error("Could not create rates", "Error", err)
+		os.Exit(1)
+	}
+	cs := server.NewCurrency(rates,log)
 	//this should be disabled in production
 	reflection.Register(gs)
 
