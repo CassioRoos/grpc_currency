@@ -70,3 +70,15 @@ grpcurl --plaintext -d '{"Base": "BR", "Destination": "USD"}' localhost:9098 Cur
   "rate": 5.37
 }
 ```
+{
+	"Base" : "BRL",
+	"Destination" : "USD"
+}
+
+{
+	"Base" : "BRL",
+	"Destination" : "EUR"
+}
+
+
+ grpcurl --plaintext -d @ localhost:9098 Currency/SubscribeRates

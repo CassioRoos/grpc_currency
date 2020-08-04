@@ -1,8 +1,11 @@
 syntax = "proto3";
 
+import "google/rpc/status.proto";
+
 service Currency {
   // Return the exchange rate fot the two provided currency codes
   rpc GetRate(RateRequest) returns (RateResponse);
+  rpc SubscribeRates(stream RateRequest) returns (stream StreamingRateResponse);
 }
 
 message RateRequest{
@@ -10,11 +13,24 @@ message RateRequest{
   Currencies Base = 1;
   // Destination currency for the rate
   Currencies Destination = 2;
+
 }
 
 // Is the response from GetRate, it contains rate which is a floating and can be used to convert between the two currencies
 message RateResponse{
-  double rate = 1;
+  // Base currency for the rate
+  Currencies Base = 1;
+  // Destination currency for the rate
+  Currencies Destination = 2;
+  // Rate of the currency
+  double Rate = 3;
+}
+
+message StreamingRateResponse {
+  oneof message{
+    RateResponse rate_response = 1;
+    google.rpc.Status error = 2;
+  }
 }
 
 // Custom type
