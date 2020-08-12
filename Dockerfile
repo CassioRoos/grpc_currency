@@ -19,6 +19,6 @@ WORKDIR /app
 
 COPY --from=builder build/grpc_currency .
 
-EXPOSE 7777
+EXPOSE 9098
 
 CMD ["/app/grpc_currency"]
