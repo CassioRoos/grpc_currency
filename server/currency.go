@@ -2,11 +2,11 @@ package server
 
 import (
 	"context"
+	"github.com/CassioRoos/grpc_currency/protos/currency"
+	"github.com/CassioRoos/grpc_currency/services"
 	"github.com/hashicorp/go-hclog"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
-	"grpc_currency/protos/currency"
-	"grpc_currency/services"
 	"io"
 	"time"
 )

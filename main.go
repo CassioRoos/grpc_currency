@@ -2,12 +2,12 @@ package main
 
 import (
 	"fmt"
+	"github.com/CassioRoos/grpc_currency/protos/currency"
+	"github.com/CassioRoos/grpc_currency/server"
+	"github.com/CassioRoos/grpc_currency/services"
 	"github.com/hashicorp/go-hclog"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
-	"grpc_currency/protos/currency"
-	"grpc_currency/server"
-	"grpc_currency/services"
 	"net"
 	"os"
 )
