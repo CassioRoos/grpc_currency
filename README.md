@@ -82,3 +82,6 @@ grpcurl --plaintext -d '{"Base": "BR", "Destination": "USD"}' localhost:9098 Cur
 
 
  grpcurl --plaintext -d @ localhost:9098 Currency/SubscribeRates
+ 
+ 
+ grpcurl --plaintext localhost:9098 HealthCheck/Check

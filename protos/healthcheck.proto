@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+service HealthCheck{
+  rpc Check(HealthCheckParam) returns(HealthCheckReturn);
+}
+
+message HealthCheckParam{}
+
+message HealthCheckReturn{
+  string Message = 1;
+}

@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/CassioRoos/grpc_currency/protos/currency"
+	"github.com/CassioRoos/grpc_currency/protos/healthcheck"
 	"github.com/CassioRoos/grpc_currency/server"
 	"github.com/CassioRoos/grpc_currency/services"
 	"github.com/hashicorp/go-hclog"
@@ -21,11 +22,13 @@ func main() {
 		os.Exit(1)
 	}
 	cs := server.NewCurrency(rates,log)
+	hs := server.NewHealthCheck(log)
 	//this should be disabled in production
 	reflection.Register(gs)
 
 	//register our server in order to "Respond" our request
 	currency.RegisterCurrencyServer(gs, cs)
+	healthcheck.RegisterHealthCheckServer(gs, hs)
 
 	l, err := net.Listen("tcp", ":9098")
 

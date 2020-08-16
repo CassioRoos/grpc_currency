@@ -1,0 +1,15 @@
+version: '3.0'
+services:
+  nginx:
+    container_name: nginx_api
+    build:
+      context: ./..
+      dockerfile: docker/nginx/Dockerfile
+    ports:
+      - 80:80
+    depends_on:
+      - api_1
+      - api_2
+      - api_3
+    networks:
+      - api_netcorp
